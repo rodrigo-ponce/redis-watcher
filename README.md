@@ -26,7 +26,7 @@ git https://github.com/rodrigo-ponce/redis-watcher.git
 cd redis-watcher
 
 ```
-### Running the App
+### Downloading Docker Image
 
 ```bash
 docker pull rponcepy/redis-watcher
