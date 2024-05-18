@@ -22,5 +22,12 @@ Redis Watch App is a monitoring tool for Redis clusters, designed to track activ
 
 ```bash
 git https://github.com/rodrigo-ponce/redis-watcher.git
+
 cd redis-watcher
 
+```
+### Running the App
+
+```bash
+docker pull rponcepy/redis-watcher
+```

@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  app:
+  redis-watcher:
     build: .
-    container_name: redis-watch-app
+    container_name: redis-watcher
     ports:
       - '5000:5000'
     volumes:
