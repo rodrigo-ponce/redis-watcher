@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: redis-watch-app
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./config:/app/config
+    environment:
+      - REDIS_CONFIG_PATH=/app/config/redis-config.json
