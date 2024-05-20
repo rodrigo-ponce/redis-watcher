@@ -1,6 +1,6 @@
 # Redis Watcher
 
-Redis Watch App is a monitoring tool for Redis clusters, designed to track active and inactive connections, idle times, and more. Built with React for the frontend and Node.js for the backend, this app provides real-time insights into the status of your Redis connections.
+Redis Watcher is a monitoring tool for Redis clusters, designed to track active and inactive connections, idle times, and more. Built with React for the frontend and Node.js for the backend, this app provides real-time insights into the status of your Redis connections.
 
 ## Features
 
