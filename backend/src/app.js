@@ -54,19 +54,23 @@ app.get('/api/connections', async (req, res) => {
       return acc;
     }, {});
 
-    for (const appName in groupedClients) {
+    // Calcular promedios y ordenar alfabéticamente
+    const sortedGroupedClients = Object.keys(groupedClients).sort().reduce((acc, appName) => {
       const app = groupedClients[appName];
       const count = app.clients.length;
       app.ageAvg = (app.ageSum / count).toFixed(2);
       app.idleAvg = (app.idleSum / count).toFixed(2);
       app.totalConnections = count;
-    }
+      acc[appName] = app;
+      return acc;
+    }, {});
 
-    res.json(groupedClients);
+    res.json(sortedGroupedClients);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));

@@ -8,14 +8,17 @@ const ConnectionsList = () => {
   useEffect(() => {
     const getConnections = async () => {
       const data = await fetchConnections();
-      setConnections(data);
+      // Ordenar los datos alfabéticamente por el nombre de la aplicación
+      const sortedData = Object.keys(data).sort().reduce((acc, key) => {
+        acc[key] = data[key];
+        return acc;
+      }, {});
+      setConnections(sortedData);
     };
 
-    // Llamar a getConnections inmediatamente y luego cada 1 segundo
     getConnections();
     const intervalId = setInterval(getConnections, 1000);
 
-    // Limpiar el intervalo cuando el componente se desmonte
     return () => clearInterval(intervalId);
   }, []);
 
