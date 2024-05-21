@@ -17,8 +17,10 @@ const client = createClient({
 });
 
 client.connect()
-  .then(() => {
+  .then(async () => {
     console.log('Connected to Redis...');
+    // Establecer el nombre del cliente
+    await client.sendCommand(['CLIENT', 'SETNAME', 'redis-watcher']);
   })
   .catch(err => {
     console.error('Could not connect to Redis:', err);
@@ -70,7 +72,6 @@ app.get('/api/connections', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));

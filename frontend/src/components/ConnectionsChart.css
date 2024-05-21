@@ -1,0 +1,24 @@
+.chart-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 95%;
+    padding: 20px;
+    text-align: left;
+    margin-top: 10px; /* Margen superior para espacio adicional */
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 200px; /* Ajustar la altura según sea necesario */
+    width: 90%;
+  }
+  
+  .chart-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #2980b9;
+    text-align: center;
+  }
+  
