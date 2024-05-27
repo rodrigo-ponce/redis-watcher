@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { fetchConnections } from '../services/redisService';
-import ConnectionsChart from './ConnectionsChart';
 import './ConnectionsList.css';
+import { formatTime } from '../utils/timeUtils'; // Importar la función de formateo
 
-const ConnectionsList = () => {
+const ConnectionsList = ({ onSelectApp }) => {
   const [connections, setConnections] = useState({});
-  const [chartData, setChartData] = useState({});
 
   useEffect(() => {
     const getConnections = async () => {
@@ -18,54 +17,32 @@ const ConnectionsList = () => {
       }, {});
 
       setConnections(sortedData);
-
-      // Actualizar los datos del gráfico
-      const newChartData = { ...chartData };
-
-      Object.keys(sortedData).forEach(app => {
-        if (!newChartData[app]) {
-          newChartData[app] = {
-            labels: [],
-            activeConnections: [],
-            inactiveConnections: []
-          };
-        }
-        newChartData[app].labels.push(new Date().toLocaleTimeString());
-        newChartData[app].activeConnections.push(sortedData[app].active);
-        newChartData[app].inactiveConnections.push(sortedData[app].inactive);
-
-        // Limitar el número de puntos en el gráfico
-        if (newChartData[app].labels.length > 20) {
-          newChartData[app].labels.shift();
-          newChartData[app].activeConnections.shift();
-          newChartData[app].inactiveConnections.shift();
-        }
-      });
-
-      setChartData(newChartData);
     };
 
     getConnections();
     const intervalId = setInterval(getConnections, 1000);
 
     return () => clearInterval(intervalId);
-  }, [chartData]);
+  }, []);
+
+  const handleCardClick = (appName) => {
+    onSelectApp(appName);
+  };
 
   return (
     <div className="connections-container">
       <h1>Redis Connections</h1>
       <div className="cards-container">
         {Object.entries(connections).map(([appName, { active, inactive, ageAvg, idleAvg, totalConnections }]) => (
-          <div key={appName} className="card">
+          <div key={appName} className="card" onClick={() => handleCardClick(appName)}>
             <h2>{appName}</h2>
             <div className="card-info">
               <p><strong>Total Connections:</strong> {totalConnections}</p>
               <p><strong>Active Connections:</strong> {active}</p>
               <p><strong>Inactive Connections:</strong> {inactive}</p>
-              <p><strong>Average Age:</strong> {ageAvg} seconds</p>
-              <p><strong>Average Idle:</strong> {idleAvg} seconds</p>
+              <p><strong>Average Age:</strong> {formatTime(parseFloat(ageAvg))}</p> {/* Usar la función de formateo */}
+              <p><strong>Average Idle:</strong> {formatTime(parseFloat(idleAvg))}</p> {/* Usar la función de formateo */}
             </div>
-            <ConnectionsChart appName={appName} data={chartData[appName] || { labels: [], activeConnections: [], inactiveConnections: [] }} />
           </div>
         ))}
       </div>

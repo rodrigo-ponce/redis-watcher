@@ -12,9 +12,9 @@ h1 {
 
 .cards-container {
   display: flex;
-  flex-direction: column; /* Cambiado a columna para que se apilen verticalmente */
-  align-items: center;
-  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .card {
@@ -23,11 +23,11 @@ h1 {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 800px; /* Ajustar el tamaño de la tarjeta */
+  max-width: 500px; /* Ajustar el tamaño de la tarjeta */
   padding: 20px;
   text-align: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 20px; /* Espacio adicional para la tarjeta del gráfico */
+  cursor: pointer; /* Indicar que la tarjeta es clicable */
 }
 
 .card:hover {
@@ -37,13 +37,13 @@ h1 {
 
 .card h2 {
   font-size: 1.5em;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #2980b9;
   text-align: center;
 }
 
 .card-info p {
-  margin: 10px 0;
+  margin: 5px 0; /* Reducir el margen para ajustarse mejor */
   color: #7f8c8d;
 }
 

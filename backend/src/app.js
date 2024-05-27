@@ -4,7 +4,6 @@ const dotenv = require('dotenv');
 const path = require('path');
 const fs = require('fs');
 
-// Leer configuración de Redis desde un archivo
 const configPath = process.env.REDIS_CONFIG_PATH || './redis-config.json';
 const redisConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
@@ -19,7 +18,6 @@ const client = createClient({
 client.connect()
   .then(async () => {
     console.log('Connected to Redis...');
-    // Establecer el nombre del cliente
     await client.sendCommand(['CLIENT', 'SETNAME', 'redis-watcher']);
   })
   .catch(err => {
@@ -56,7 +54,6 @@ app.get('/api/connections', async (req, res) => {
       return acc;
     }, {});
 
-    // Calcular promedios y ordenar alfabéticamente
     const sortedGroupedClients = Object.keys(groupedClients).sort().reduce((acc, appName) => {
       const app = groupedClients[appName];
       const count = app.clients.length;
