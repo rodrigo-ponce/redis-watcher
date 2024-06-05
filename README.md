@@ -1,5 +1,10 @@
 # Redis Watcher
 
+# My Project
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rodrigo-ponce_redis-watcher&metric=alert_status)](https://sonarcloud.io/dashboard?id=rodrigo-ponce_redis-watcher)
+
+
 Redis Watcher is a monitoring tool for Redis clusters, designed to track active and inactive connections, idle times, and more. Built with React for the frontend and Node.js for the backend, this app provides real-time insights into the status of your Redis connections.
 
 ## Features
