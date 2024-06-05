@@ -1,7 +1,5 @@
 # Redis Watcher
 
-# My Project
-
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rodrigo-ponce_redis-watcher&metric=alert_status)](https://sonarcloud.io/dashboard?id=rodrigo-ponce_redis-watcher)
 
 
