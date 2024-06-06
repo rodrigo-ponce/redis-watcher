@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import './ConnectionsChart.css';
 import { fetchConnections } from '../services/redisService';
+import PropTypes from 'prop-types';
 
 const ConnectionsChart = ({ appName }) => {
   const [chartData, setChartData] = useState({
@@ -70,6 +71,10 @@ const ConnectionsChart = ({ appName }) => {
       </div>
     </div>
   );
+};
+
+ConnectionsChart.propTypes = {
+  appName: PropTypes.string.isRequired,
 };
 
 export default ConnectionsChart;

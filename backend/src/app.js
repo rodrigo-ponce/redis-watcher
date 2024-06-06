@@ -54,7 +54,9 @@ app.get('/api/connections', async (req, res) => {
       return acc;
     }, {});
 
-    const sortedGroupedClients = Object.keys(groupedClients).sort().reduce((acc, appName) => {
+    const sortedGroupedClients = Object.keys(groupedClients)
+    .sort((a, b) => a.localeCompare(b))
+    .reduce((acc, appName) => {
       const app = groupedClients[appName];
       const count = app.clients.length;
       app.ageAvg = (app.ageSum / count).toFixed(2);
@@ -63,6 +65,7 @@ app.get('/api/connections', async (req, res) => {
       acc[appName] = app;
       return acc;
     }, {});
+  
 
     res.json(sortedGroupedClients);
   } catch (err) {
